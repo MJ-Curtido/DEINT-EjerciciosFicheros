@@ -9,7 +9,7 @@ String texto = "";
 String frase = "";
 String[] lineas;
 
-/*
+
 Console.WriteLine("-------1-------");
 Console.WriteLine("Introduzca una ruta");
 ruta1 = Console.ReadLine();
@@ -81,6 +81,60 @@ texto = $"Nota media de matemáticas: {Math.Round(sumaNotas / cont * 100) / 100}
 File.WriteAllText(rutaSolucion, texto);
 
 Console.WriteLine("Operación realizada.");
-*/
 
 
+Console.WriteLine("\n\n-------5-------");
+String rutaUnion = "C:\\Users\\Dam\\Downloads\\prueba\\union.txt";
+
+Console.WriteLine("Introduzca una ruta");
+ruta1 = Console.ReadLine();
+
+Console.WriteLine("Introduzca otra ruta");
+ruta2 = Console.ReadLine();
+
+StreamWriter swRutaUnion = new StreamWriter(rutaUnion, true);
+StreamReader srRuta1 = new StreamReader(ruta1);
+StreamReader srRuta2 = new StreamReader(ruta2);
+
+String lineaRuta1 = srRuta1.ReadLine();
+String lineaRuta2 = srRuta2.ReadLine();
+
+while (lineaRuta1 != null)
+{
+	swRutaUnion.WriteLine(lineaRuta1);
+
+	if (lineaRuta2 != null)
+	{
+        swRutaUnion.WriteLine(lineaRuta2);
+
+        lineaRuta2 = srRuta2.ReadLine();
+    }
+	lineaRuta1 = srRuta1.ReadLine();
+}
+
+while (lineaRuta2 != null)
+{
+    swRutaUnion.WriteLine(lineaRuta2);
+
+    lineaRuta2 = srRuta2.ReadLine();
+}
+srRuta1.Dispose();
+srRuta2.Dispose();
+swRutaUnion.Dispose();
+
+Console.WriteLine("Operación realizada.");
+
+
+Console.WriteLine("\n\n-------6-------");
+String rutaEnteros = "C:\\Users\\Dam\\Downloads\\prueba\\enteros.txt";
+
+texto = File.ReadAllText(rutaEnteros);
+
+MatchCollection colecNum = Regex.Matches(texto, @"\d+");
+
+foreach (Match elem in colecNum)
+{
+	Console.Write(elem.Value + " ");
+}
+
+Console.WriteLine("Operación realizada.");
